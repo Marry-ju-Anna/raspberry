@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Raspberry</title>
+<meta charset="utf-8">
+<link href="style.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+	<header>
+	<ul class="nav">
+	<li><a href="#">About</a></li>
+	<li><a href="#">OfFer</a></li>
+	<li class="logo"><img src="img/rasp.png"></li>
+	<li><a href="#">Gallery</a></li>
+	<li><a href="#">Contact</a></li>
+	</ul>
+	</header>
+	<article>
+		<h1>Raspberry kingdom</h1>
+		<button id="ModalForm">Enter the gates</button>
+	</article>
+	<footer>
+		<div class="container">
+		<div><a href="#" class="item">© 2014 Raspberry Kingdom</a></div>
+		<div><a href="#" class="item">Cookies</a> |  <a href="#" class="item">Privacy</a></div>
+		<div>Design by <a href="#">Wizard of Oz</a></div>
+		</div>
+	</footer>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+	<h2>Are you a Raspberry Knight?</h2>
+	<form class="login-form" onsubmit="return false">
+		<div id="error">Try again!</div>
+		<input type="email" name="email" placeholder="E-mail" id="email">
+		<input type="password" name="password" placeholder="Password" id="password">
+		<button type="submit" id="login">Log in</button>
+	</form>
+	<div id="success"></div>
+  </div>
+
+</div>
+<script type="text/javascript">
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("ModalForm");
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+<script>
+
+$(document).ready(function(){
+	$('#login').click(function(){
+		var user = $('#email').val();
+		var password = $("#password").val();
+		var error = true;
+		$.getJSON("data.json",function(data){
+				if(user == data.login && password == data.password){
+					$('form,h2').hide();
+					$('#success').html('<h2>Hello ;)! How are you?</h2>');
+				}else{
+					$('#error').show();
+					$('#user').val();
+					$('#password').val();
+				}
+		});
+	});
+}); 
+
+
+
+</script>
+</body>
+</html>
